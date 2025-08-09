@@ -5,6 +5,7 @@ import CountryLeaderboard from '@/components/CountryLeaderboard';
 import UserCountrySection from '@/components/UserCountrySection';
 import Footer from '@/components/Footer';
 import { useToast } from '@/hooks/use-toast';
+import CountUp from 'react-countup';
 
 // Mock data for demo - in production this would come from Supabase
 const mockCountries = [
@@ -72,15 +73,37 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        {/* Global Counter */}
-        <GlobalCounter totalClicks={globalClicks} />
-        
-        {/* Main Game Area */}
-        <div className="grid lg:grid-cols-3 gap-8 mt-8">
-          {/* Map Section - Takes up 2 columns on large screens */}
-          <div className="lg:col-span-2 space-y-6">
+    <div className="min-h-screen bg-background relative">
+      {/* Global Counter in Corner */}
+      <div className="fixed top-4 right-4 z-10">
+        <div className="bg-gradient-card rounded-lg p-4 border border-border shadow-card backdrop-blur-sm">
+          <div className="text-center">
+            <p className="text-xs text-muted-foreground mb-1">Global Clicks</p>
+            <div className="text-2xl font-bold text-primary">
+              <CountUp 
+                end={globalClicks} 
+                duration={2}
+                separator=","
+                preserveValue
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Game Title */}
+      <div className="text-center py-6">
+        <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+          World Click War
+        </h1>
+        <p className="text-muted-foreground mt-2">Click countries to dominate the global leaderboard!</p>
+      </div>
+      
+      <div className="container mx-auto px-4">
+        {/* Main Game Area - Map and Leaderboard Side by Side */}
+        <div className="grid lg:grid-cols-4 gap-6">
+          {/* Map Section - Takes up 3 columns */}
+          <div className="lg:col-span-3 space-y-4">
             <WorldMap 
               onCountryClick={handleCountryClick} 
               userCountry={userCountry}
@@ -92,7 +115,7 @@ const Index = () => {
             />
           </div>
           
-          {/* Leaderboard Section */}
+          {/* Leaderboard Section - 1 column */}
           <div className="lg:col-span-1">
             <CountryLeaderboard 
               countries={countries}
