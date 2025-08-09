@@ -33,7 +33,7 @@ const UserCountrySection: React.FC<UserCountrySectionProps> = ({
   return (
     <div className="w-full py-6">
       <Card className="bg-gradient-card border border-border shadow-card p-6 w-full">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center space-x-8 max-w-4xl mx-auto">
           {/* Left side - Flag and Country Info */}
           <div className="flex items-center space-x-4">
             <div className="text-6xl animate-flag-wave">
@@ -50,7 +50,7 @@ const UserCountrySection: React.FC<UserCountrySectionProps> = ({
           </div>
           
           {/* Right side - Click Button */}
-          <div className="flex flex-col items-end space-y-2">
+          <div className="flex flex-col items-center space-y-2">
             <Button 
               variant="click" 
               size="xl"
@@ -60,7 +60,7 @@ const UserCountrySection: React.FC<UserCountrySectionProps> = ({
               <span className="text-2xl mr-2">⚡</span>
               Click for {userCountry}!
             </Button>
-            <p className="text-xs text-muted-foreground text-right max-w-[200px]">
+            <p className="text-xs text-muted-foreground text-center max-w-[200px]">
               Every click counts! Help your country climb the leaderboard.
             </p>
           </div>
